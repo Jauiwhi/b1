@@ -1,0 +1,73 @@
+# AI文档处理Agents系统配置文件
+
+# 模型提供商设置
+# 本地模型: ollama, lm_studio, vllm, localai, jan, fastchat, textgen
+# 云端模型: gemini, chatgpt, qwen, deepseek
+model_provider: qwen
+
+# 本地模型配置 (适用于本地模型)
+local:
+  host: localhost
+  port: 1337
+  model_name: ""  # 留空则使用默认模型
+  timeout: 300
+
+# 本地模型默认端口:
+#   ollama: 11434
+#   lm_studio: 1234
+#   vllm: 8000
+#   localai: 8080
+#   jan: 1337
+#   fastchat: 8000
+#   textgen: 5000
+#   ollama with openai compat: 11434
+
+# 云端模型配置
+cloud:
+  # Gemini配置
+  gemini:
+    api_key: ""  # 您的Gemini API Key
+    model: gemini-3-flash
+
+  # ChatGPT配置
+  chatgpt:
+    api_key: ""  # 您的OpenAI API Key
+    model: gpt-5-mini
+    base_url: https://api.openai.com/v1
+
+  # Qwen配置 (阿里云通义千问)
+  qwen:
+    api_key: ""  # 您的阿里云API Key
+    model: qwen3.6-35b-a3b
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+
+  # Deepseek配置
+  deepseek:
+    api_key: ""  # 您的Deepseek API Key
+    model: deepseek-chat
+    base_url: https://api.deepseek.com/v1
+
+# 处理配置
+processing:
+  max_context_tokens: 32000
+  batch_size: 50
+  output_dir: output
+  temp_dir: temp
+
+# 视觉配置
+vision:
+  use_vision_if_available: true
+  fallback_to_ocr: true
+  ocr_language: chi_sim+eng
+
+# 评价指标权重
+evaluation:
+  accuracy_weight: 0.4
+  interpretability_weight: 0.3
+  transferability_weight: 0.3
+
+# 优先级权重
+priority:
+  urgency_weight: 0.4
+  misclassification_risk_weight: 0.3
+  review_necessity_weight: 0.3
